@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>VueJs</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id='app'>
+            <!-- <form action="done.html" @submit.prevent="handleIt">
+                <button type="submit" @click="doSomething">
+                Submit Me!
+                </button>
+            </form> -->
+            <button type="submit" @click="count++">
+                Increment Counter: {{ count }}
+            </button>
+        </div>
+        
+    </body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
+    
+    <script> 
+        new Vue({
+           el: '#app',
+           //methods: {
+           //    handleIt: function() {
+           //        alert('Handled');
+           //    }
+           //}
+           data: {
+             count: 0  
+           }
+           
+//           methods: {
+//               updateCount: function() {
+//                   this.count++;
+//               }
+//           }
+        
+        });
+    </script>
+</html>
