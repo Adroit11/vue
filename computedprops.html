@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>VueJs</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+    
+        <!-- <h1>Skill: {{ skill }}</h1>    
+        <input type="text" v-model="points"> -->
+        <h1>{{ fullName }}</h1>
+        
+        <input type="text" v-model="first" placeholder="First Name">
+        <input type="text" v-model="last" placeholder="Last Name">
+        
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
+    
+    <script> 
+        new Vue({
+           el: 'body',
+           
+           data: {
+               //points: 300
+               first: 'Jim',
+               last: 'Bob',
+               fullName: 'Jim Bob'
+           },
+           
+//           computed: {
+//              skill: function(){
+//                 if (this.points <= 100) {
+//                     return 'Beginner';
+//                 }
+//                 
+//                 return 'Advanced';
+//              } 
+//           }
+
+//           watch: {
+//               first: function(first){
+//                   
+//               }
+//           }
+           computed: {
+               fullName: function(){
+                   return this.first + ' ' + this.last; 
+               }
+           }
+           
+        });
+    </script>
+    </body>
+</html>
