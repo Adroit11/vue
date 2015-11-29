@@ -45,8 +45,12 @@
                    { name: 'Free', price: 0 }
                ],
                
-               active: {}
+               active: {},
            },
+           
+           ready: function(){
+                 this.active = this.plans[3];  
+               },
            
            components: {
                plan: {
