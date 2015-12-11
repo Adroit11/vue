@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+    <head>
+        <title>Vue JS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="app">
+            <!--<div class="static" v-bind:class="{ 'class-a': isA, 'class-b': isB }"></div>-->
+            <!--<div :class="classObject"></div>-->
+            <div :class="[classA, classB]"></div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
+        
+        <script>
+            var vm = new Vue({
+                el: '#app',
+//                data: {
+//                    isA: true,
+//                    isB: false
+//                }
+
+//                data: {
+//                    classObject: {
+//                        'class-a': true,
+//                        'class-b': false
+//                    }
+//                }
+
+            data: {
+                classA: 'class-a',
+                classB: 'class-b'
+            }
+                
+            })
+        </script>
+    </body>
+</html>

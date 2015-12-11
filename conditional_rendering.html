@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <head>
+        <title>Vue JS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="app">
+            <h1 v-if="ok">Yes</h1>
+            <h1 v-else>No</h1>
+            
+            <template v-if="ok">
+                <h1>Title</h1>
+                <p>Paragraph 1</p>
+                <p>Paragraph 2</p>
+            </template>
+            
+            <h1 v-show="ok">Hello!</h1>
+            
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
+        
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    ok: true
+                }
+            })
+        </script>
+    </body>
+</html>

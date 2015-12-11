@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+    <head>
+        <title>Vue JS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="app">
+           a={{ a }}, b={{ b }} 
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
+        
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    a: 1
+                },
+                computed: {
+                    b: function() {
+                     return this.a + 1   
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
