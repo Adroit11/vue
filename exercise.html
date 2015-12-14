@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+      .Alert {
+          position: relative;
+          background: #ddd;
+          padding: 1em;
+          border: 1px solid darken(#ddd, 10%);
+      }
+      .Alert--Success {
+          background: green;
+          border: 1px solid green;
+      }
+      .Alert--Error {
+          background: red;
+          border: 1px solid red;
+      }
+      .Alert__close {
+          position: absolute;
+          top: 1em;
+          right: 1em;
+          font-weight: bold;
+          cursor: pointer;
+      }
+  </style>
+</head>
+<body>
+
+<alert type="success">
+    <strong>Success!</strong> Your account has been updated.
+</alert>
+​
+  <template id='alert-template'>
+    
+     <div :class="alertClasses" v-show="show">
+         <slot></slot>
+     <span class="Alert__close" @click="show = false">X</span>
+     </div>
+  </template> 
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.11/vue.js"></script>
+  
+<script>
+Vue.component('alert', {
+  template: '#alert-template',
+  
+  props: ['type'],
+  
+  data: function(){
+    return { show: true };
+  },
+  
+  computed: {
+      alertClasses: function(){
+          var type = this.type;
+          
+          return {
+              'Alert': true,
+              'Alert--Success': type == 'success',
+              'Alert--Error' : type == 'error'
+          }
+      }
+  }
+});  
+  
+new Vue({
+  el: 'body',
+  data: {
+    type: '',
+    message: ''
+  }
+});  
+  </script>
+</body>
+</html>
