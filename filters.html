@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>VueJs</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id='app'>
+            
+            <!--<h1>{{ $data | jsonIt }}</h1>-->
+            
+            <ul>
+                <li v-for="person in people | role 'student'">
+                    {{ person.name }}
+                </li>
+            </ul>
+            
+        </div>
+        
+    </body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
+    
+    <script> 
+//        Vue.filter('jsonIt', function(value){
+//            return JSON.stringify(value);
+//        });
+        
+        Vue.filter('role', function(value, role){
+            return value.filter(function(item) {
+                return item.role == role;
+            })
+        });
+        
+        new Vue({
+           el: '#app',
+           
+           data: {
+               //message: 'Hello World'
+               people: [
+                   { name: 'Joe', role: 'admin' },
+                   { name: 'Susan', role: 'admin' },
+                   { name: 'Frank', role: 'student' },
+                   { name: 'Jimbob', role: 'admin' }
+               ]
+           }
+        });
+    </script>
+</html>

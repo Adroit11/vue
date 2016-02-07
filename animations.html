@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>VueJs</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+        <style>
+            #animation {
+                bakground: grey;
+            }
+            
+            .fade-transition {
+                transition: all .5s ease;
+            }
+            
+            .fade-enter, .fade-leave {
+             opacity: 0;   
+            }
+        </style>
+    </head>
+    <body>
+        <div id='app'>
+            
+            <div v-show="show" transition="fade" class="animated">Hello World</div>
+            
+            <button @click="show = ! show">Toggle</button>
+        </div>
+        
+      
+    </body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js'></script>
+    
+    <script>
+        Vue.transition('fade', {
+           enterClass: 'fadeInUp',
+           leaveClass: 'fadeOutLeft'
+        });
+        
+        new Vue({
+           el: '#app',
+           data: {
+               show: true
+           }
+        });
+    </script>
+</html>

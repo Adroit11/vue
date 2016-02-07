@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Laravel</title>
+
+       
+    </head>
+    <body>
+
+            <form method="POST" action="/posts/3" id="ajaxform" v-ajax complete="Okay, the post has been deleted.">
+                {{ method_field('DELETE') }}
+                {{ csrf_field() }}
+                <button type="submit">Delete Post</button>
+            </form> 
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.js"></script>
+        
+        <script>
+            //Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('input[name="_token"]').value;
+            
+            Vue.directive('ajax', {
+                
+                params: ['complete'],
+                
+                bind: function() {
+                  this.el.addEventListener('submit', this.onSubmit.bind(this));  
+                },
+                
+                update: function(value) {
+                    alert('update');
+                },
+                
+                onSubmit: function(e) {
+                    e.preventDefault();
+                    
+                    this.vm
+                        .$http[this.getRequestType()](this.el.action)
+                        .then(this.onComplete.bind(this))
+                        .catch(this.onError.bind(this));
+                },
+                
+                onComplete: function() {
+                   if (this.params.complete) {
+                      alert(this.params.complete); 
+                   }
+                },
+                
+                onError: function(response) {
+                   console.log(response); 
+                },
+                
+                getRequestType: function() {
+                    var method = this.el.querySelector('input[name="_method"]');
+                    
+                    return (method ? method.value : this.el.method).toLowerCase();
+                }
+                
+            });
+            
+            
+            new Vue({
+               el: 'body',
+               http: {
+                   headers: {
+                   'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+               }
+           }
+            });
+        
+/*		    getFormDataById: function() {
+//        return form data Using ID;
+      var formId = this.el.id;
+      var serializedData = $('#'+formId).serializeArray();
+      var o = {};
+      $.each(serializedData, function() {
+          if (o[this.name] !== undefined) {
+              if (!o[this.name].push) {
+                  o[this.name] = [o[this.name]];
+              }
+              o[this.name].push(this.value || '');
+          } else {
+              o[this.name] = this.value || '';
+          }
+      });
+      return o;
+    }
+	
+	
+	onSubmit: function (e) {
+    var requestType = this.getRequestType();
+    var formData = this.getFormDataById();
+//          console.log(JSON.stringify(formData));
+    this.vm
+        .$http[requestType](this.el.action,formData)
+        .then(this.onComplete.bind(this))
+        .catch(this.onError.bind(this));
+    e.preventDefault();
+}
+	
+	
+*/		
+		
+        </script>
+    </body>
+</html>
